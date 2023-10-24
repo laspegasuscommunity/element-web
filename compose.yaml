@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  #Это конфигурация Docker Compose для запуска веб версии Element, используещего сервер Synapse.
+  element-web:
+    image: vectorim/element-web:latest
+    container_name: element-web
+    depends_on:
+      - "synapse"
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 5s
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.enable: "true"
+      traefik.http.routers.element-web.entrypoints: "websecure"
+      traefik.http.routers.element-web.rule: "Host(`chat.${DOMAIN}`)"
+      traefik.http.routers.element-web.service: "element-web"
+      traefik.http.routers.element-web.tls.certresolver: "letsencrypt"
+      traefik.http.services.element-web.loadbalancer.server.port: "80"
+    volumes:
+      - "./element/config.json:/app/config.json"
+
+networks:
+  external:
+    external: true
+    name: $NETWORK
