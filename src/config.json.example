@@ -1,24 +1,28 @@
 {
-	"default_server_name": "EXAMPLE.COM",
+	"default_server_name": "${DOMAIN}",
 	"default_server_config": {
 		"m.homeserver": {
-			"base_url": "https://EXAMPLE.COM"
+			"base_url": "https://${DOMAIN}"
 		},
 		"m.identity_server": {
 			"base_url": "https://matrix.org"
 		}
 	},
-	"brand": "LasP Element",
+	"brand": "Element",
 	"branding": {
-		"welcome_background_url": "https://cloud.EXAMPLE.COM/f/.../?dl=1",
-		"auth_header_logo_url": "https://cloud.EXAMPLE.COM/f/.../?dl=1",
+		"welcome_background_url": "https://cloud.${DOMAIN}/f/.../?dl=1",
+		"auth_header_logo_url": "https://cloud.${DOMAIN}/f/.../?dl=1",
 		"disable_guests": true,
 		"default_theme": "dark",
-		"permalink_prefix": "https://chat.EXAMPLE.COM",
+		"permalink_prefix": "https://chat.${DOMAIN}",
 		"auth_footer_links": [
 			{
 				"text": "Домашняя страница",
-				"url": "https://EXAMPLE.COM/"
+				"url": "https://${DOMAIN}/"
+			},
+			{
+				"text": "Мониторинг",
+				"url": "https://${DOMAIN}/page/monitoring"
 			}
 		]
 	},
@@ -26,10 +30,11 @@
 	"default_country_code": "RU",
 	"roomDirectory": {
 		"servers": [
-			"EXAMPLE.COM",
+			"${DOMAIN}",
 			"matrix.org",
 			"gitter.im",
-			"libera.chat"
+			"libera.chat",
+			"gnulinux.club"
 		]
 	},
 	"bug_report_endpoint_url": "https://element.io/bugreports/submit",

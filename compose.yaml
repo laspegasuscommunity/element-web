@@ -5,8 +5,8 @@ services:
   element-web:
     image: vectorim/element-web:latest
     container_name: element-web
-    depends_on:
-      - "synapse"
+    # depends_on:
+    #   - "synapse"
     deploy:
       restart_policy:
         condition: always
@@ -20,7 +20,7 @@ services:
       traefik.http.routers.element-web.tls.certresolver: "letsencrypt"
       traefik.http.services.element-web.loadbalancer.server.port: "80"
     volumes:
-      - "./element/config.json:/app/config.json"
+      - "./src/config.json:/app/config.json"
 
 networks:
   external:
